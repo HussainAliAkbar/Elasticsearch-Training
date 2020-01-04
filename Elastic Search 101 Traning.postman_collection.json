@@ -1,0 +1,547 @@
+{
+	"info": {
+		"_postman_id": "326d3b4d-fd58-4b5d-a39d-fe6781fb6702",
+		"name": "Elastic Search 101 Traning",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Create New Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mappings\": {\n\t\t\"laptop\": {\n\t\t\t\"properties\": {\n\t\t\t\t\"name\": {\n\t\t\t\t\t\"type\": \"text\",\n\t\t\t\t\t\"fields\": {\n\t\t\t\t\t\t\"keyword\": {\n\t\t\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"model\": {\n\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t},\n\t\t\t\t\"releaseDate\": {\n\t\t\t\t\t\"type\": \"date\"\n\t\t\t\t},\n\t\t\t\t\"processor\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t\"screenSize\": {\n\t\t\t\t\t\"type\": \"float\"\n\t\t\t\t},\n\t\t\t\t\"ram\": {\n\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t},\n\t\t\t\t\"storageType\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t\"storageSize\": {\n\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t},\n\t\t\t\t\"battery\": {\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"type\": {\n\t\t\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"capacity\": {\n\t\t\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"cells\": {\n\t\t\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"features\": {\n\t\t\t\t\t\"type\": \"nested\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"id\": {\n\t\t\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"value\": {\n\t\t\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Delete Index",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mappings\": {\n\t\t\"laptop\": {\n\t\t\t\"properties\": {\n\t\t\t\t\"name\": {\n\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t},\n\t\t\t\t\"model\": {\n\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t},\n\t\t\t\t\"releaseDate\": {\n\t\t\t\t\t\"type\": \"date\"\n\t\t\t\t},\n\t\t\t\t\"processor\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t\"screenSize\": {\n\t\t\t\t\t\"type\": \"float\"\n\t\t\t\t},\n\t\t\t\t\"ram\": {\n\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t},\n\t\t\t\t\"storageType\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t\"storageSize\": {\n\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t},\n\t\t\t\t\"battery\": {\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\t\t\"capacity\": \"long\",\n\t\t\t\t\t\t\"cells\": \"long\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"features\": {\n\t\t\t\t\t\"type\": \"nested\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"id\": \"long\",\n\t\t\t\t\t\t\"value\": \"keyword\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Get Index",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mappings\": {\n\t\t\"laptop\": {\n\t\t\t\"properties\": {\n\t\t\t\t\"name\": {\n\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t},\n\t\t\t\t\"model\": {\n\t\t\t\t\t\"type\": \"keyword\"\n\t\t\t\t},\n\t\t\t\t\"releaseDate\": {\n\t\t\t\t\t\"type\": \"date\"\n\t\t\t\t},\n\t\t\t\t\"processor\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t\"screenSize\": {\n\t\t\t\t\t\"type\": \"float\"\n\t\t\t\t},\n\t\t\t\t\"ram\": {\n\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t},\n\t\t\t\t\"storageType\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t},\n\t\t\t\t\"storageSize\": {\n\t\t\t\t\t\"type\": \"long\"\n\t\t\t\t},\n\t\t\t\t\"battery\": {\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"type\": \"keyword\",\n\t\t\t\t\t\t\"capacity\": \"long\",\n\t\t\t\t\t\t\"cells\": \"long\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"features\": {\n\t\t\t\t\t\"type\": \"nested\",\n\t\t\t\t\t\"properties\": {\n\t\t\t\t\t\t\"id\": \"long\",\n\t\t\t\t\t\t\"value\": \"keyword\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Add new Document to Index",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Dell Latitude\",\n    \"model\": \"E5450\",\n    \"releaseDate\": \"2016-01-01\",\n    \"processor\": \"Intel® Core™ i5-5200U CPU @ 2.20GHz × 4\",\n    \"screenSize\": \"14.0\",\n    \"ram\": 16,\n    \"storageType\": \"SSD\",\n    \"storageSize\": 256,\n    \"battery\": {\n    \t\"type\": \"liPo\",\n    \t\"capacity\": 50,\n    \t\"cells\": 4\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/1",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Get all documents in Index",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"size\": 20\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6a. Basic Match Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\n\t\t\"match\": {\n\t\t\t\"name\": \"Dell\"\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6b. Multi Match Query with fuzziness",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"multi_match\" : {\n            \"query\" : \"HPP\",\n            \"fields\": [\"name\"],\n            \"fuzziness\": \"AUTO\"\n        }\n    },\n    \"_source\": [\"name\"],\n    \"size\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filter context WIP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": { \n    \"bool\": { \n      \"must\": [\n        { \"match\": { \"title\":   \"Search\"        }}, \n        { \"match\": { \"content\": \"Elasticsearch\" }}  \n      ],\n      \"filter\": [ \n        { \"term\":  { \"status\": \"published\" }}, \n        { \"range\": { \"publish_date\": { \"gte\": \"2015-01-01\" }}} \n      ]\n    }\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6c. Match Phrase and Match Phrase Prefix Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"match\" : {\n            \"processor\" : {\n            \t\"query\":\"processor i7\"\n            }\n        }\n    },\n    \"_source\": [\"processor\", \"name\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6d. Term and Terms Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"term\" : {\n        \t\"ram\": 0\n        }\n    },\n    \"_source\": [\"ram\", \"name\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6e. Range Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"range\" : {\n        \t\"ram\": {\n        \t\t\"gte\": 4,\n        \t\t\"lte\": 8\n        \t}\n        }\n    },\n    \"_source\": [\"ram\", \"name\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6f. Sorting and Paging Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": {\n        \"range\" : {\n        \t\"ram\": {\n        \t\t\"gte\": 4,\n        \t\t\"lte\": 8\n        \t}\n        }\n    },\n    \"_source\": [\"ram\", \"name\", \"releaseDate\"],\n    \"sort\": {\n    \t\"releaseDate\": {\"order\": \"desc\"}\n    },\n    \"size\": 10,\n    \"from\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7a. Compound Query Structure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\n\t\t\"bool\": {\n\t\t\t\"must\": [],\n\t\t\t\"should\": [],\n\t\t\t\"must_not\": [],\n\t\t\t\"filter\": []\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7b. Query vs Filter Context",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\n\t\t\"bool\": {\n\t\t\t\"must\": [{\n\t\t\t\t\"match\": {\n\t\t\t\t\t\"name\": \"Dell\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"term\": {\n\t\t\t\t\t\"ram\": 16\n\t\t\t\t}\n\t\t\t}],\n\t\t\t\"should\": [],\n\t\t\t\"must_not\": [],\n\t\t\t\"filter\": [{\n\t\t\t\t\t\"match\": {\n\t\t\t\t\t\t\"name\": \"Dell\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t{\n\t\t\t\t\"term\": {\n\t\t\t\t\t\"ram\": 16\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t]\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7c. Minimum Should Match",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\n\t\t\"bool\": {\n\t\t\t\"must\": [{\n\t\t\t\t\"match\": {\n\t\t\t\t\t\"name\": \"Dell\"\n\t\t\t\t}\n\t\t\t}],\n\t\t\t\"should\": [\n\t\t\t{\n\t\t\t\t\"term\": {\n\t\t\t\t\t\"ram\": 16\n\t\t\t\t}\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"term\": {\n\t\t\t\t\t\"ram\": 32\n\t\t\t\t}\n\t\t\t}],\n\t\t\t\"must_not\": [],\n\t\t\t\"filter\": [\n\t\t\t]\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9200/products/laptop/_search",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"products",
+						"laptop",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
