@@ -232,43 +232,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"query\": {\n        \"multi_match\" : {\n            \"query\" : \"HPP\",\n            \"fields\": [\"name\"],\n            \"fuzziness\": \"AUTO\"\n        }\n    },\n    \"_source\": [\"name\"],\n    \"size\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:9200/products/laptop/_search",
-					"host": [
-						"localhost"
-					],
-					"port": "9200",
-					"path": [
-						"products",
-						"laptop",
-						"_search"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "filter context WIP",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"query\": { \n    \"bool\": { \n      \"must\": [\n        { \"match\": { \"title\":   \"Search\"        }}, \n        { \"match\": { \"content\": \"Elasticsearch\" }}  \n      ],\n      \"filter\": [ \n        { \"term\":  { \"status\": \"published\" }}, \n        { \"range\": { \"publish_date\": { \"gte\": \"2015-01-01\" }}} \n      ]\n    }\n  }\n}",
+					"raw": "{\n    \"query\": {\n        \"multi_match\" : {\n            \"query\" : \"HPP\",\n            \"fields\": [\"name\", \"processor\"],\n            \"fuzziness\": \"AUTO\"\n        }\n    },\n    \"_source\": [\"name\"],\n    \"size\": 10\n}",
 					"options": {
 						"raw": {
 							"language": "json"
